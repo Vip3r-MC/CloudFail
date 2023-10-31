@@ -16,9 +16,12 @@ import platform
 from colorama import Fore, Style
 from DNSDumpsterAPI import DNSDumpsterAPI
 import dns.resolver
+import collections.abc
 
 colorama.init(Style.BRIGHT)
 
+# Monkey patch for Python 3.11 compatibility with BeautifulSoup
+collections.Callable = collections.abc.Callable
 
 def print_out(data, end='\n'):
     datetimestr = str(datetime.datetime.strftime(datetime.datetime.now(), '%H:%M:%S'))
